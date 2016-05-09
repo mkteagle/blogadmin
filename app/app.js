@@ -3,7 +3,6 @@
         [
             'ngMaterial',
             'ui.router',
-            'blogService',
             'blogController',
             'blogDirective',
             'froala',
@@ -14,7 +13,8 @@
             'ngAnimate',
             'ngFileUpload',
             'uploaderApp',
-            'editPostController'
+            'editPostController',
+            'loginController'
         ])
         .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
         $urlRouterProvider.otherwise("/edit");
@@ -84,6 +84,11 @@
                 url: "/posts",
                 templateUrl: "./templates/posts.html",
                 controller: 'BlogController as bc'
+            })
+            .state("admin", {
+                url: "/admin",
+                templateUrl: "./templates/admin.html",
+                controller: "AdminController as ac"
             });
 
         // if none of the above states are matched, use this as the fallback

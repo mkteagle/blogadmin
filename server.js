@@ -16,21 +16,10 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/api', router);
 var port = (process.env.PORT || 5000);
 var passport = require('passport');
-var Auth0Strategy = require('passport-auth0');
 
-var strategy = new Auth0Strategy({
-        domain:       'teagleseagles.auth0.com',
-        clientID:     'HgmQAsN454guxmXz8tsq951aM0rrfADL',
-        clientSecret: 'OK5eIpbg4wZGaay2if8Ss8NlqbQuv_ds4KeM1DvDoN8ts2NytpzNxbJV-Ps0Wmv0',
-        callbackURL:  'http://localhost:5000/'
-    },
-    function(accessToken, refreshToken, extraParams, profile, done) {
-        // accessToken is the token to call Auth0 API (not needed in the most cases)
-        // extraParams.id_token has the JSON Web Token
-        // profile has all the information from the user
-        return done(null, profile);
-    }
-);
+// This is the file we created in step 2.
+// This will configure Passport to use Auth0
+var strategy = require('./setup-passport');
 
 passport.use(strategy);
 
@@ -49,11 +38,17 @@ app.get('/callback',
         if (!req.user) {
             throw new Error('user null');
         }
-        res.redirect("/user");
+        res.redirect("#/admin");
     });
 app.get('/auth/google',
     passport.authenticate('auth0', {connection: 'google-oauth2'}), function(req, res) {
-        res.redirect("/");
+        res.redirect("#/admin");
+});
+app.get('/user', function (req, res) {
+    console.log(req.user);
+    res.render('user', {
+        user: req.user
+    });
 });
 function insertDocument(db, blog, callback) {
     db.collection('blogs').insertOne(blog, function(err, result) {
@@ -70,7 +65,6 @@ function findBlogs(db, callback) {
             blogs.push(doc);
         }
         else {
-            console.log(blogs);
             callback();
         }
     })

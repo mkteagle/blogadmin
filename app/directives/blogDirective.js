@@ -14,8 +14,8 @@
             }
         })
         .directive("commentDir", commentDir);
-        commentDir.$inject = ['blogService', '$http'];
-        function commentDir (blogService, $http) {
+        commentDir.$inject = ['$http'];
+        function commentDir ($http) {
             var commentController = function () {
                 var cc = this;
                 cc.$http = $http;
@@ -26,7 +26,6 @@
                 cc.commentCol = [{name: 'Mike', content: 'this should work. why does it not work'}]
                 cc.add = add;
                 cc.get = get;
-                cc.post = blogService.post;
                 cc.getGravatar = getGravatar;
 
                 var postAuthorEmail = 'mkteagle@gmail.com';
@@ -47,7 +46,6 @@
                     });
                 }
                 function add() {
-                    blogService.addComment(cc.name, cc.content);
                     cc.get();
                 }
             };

@@ -1,0 +1,12 @@
+<div ng-controller="BlogController as bc">
+<div ng-init="bc.init()">
+    <div class="frow">
+        <div ng-include="'./templates/sidebar.html'"></div>
+        <md-content class="contents">
+            <div ng-include="'./templates/heading.html'"></div>
+            <div class="fullheight" ui-view>
+            </div>
+        </md-content>
+    </div>
+</div>
+</div>
