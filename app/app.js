@@ -17,7 +17,7 @@
             'loginController'
         ])
         .config(function ($stateProvider, $urlRouterProvider, $mdIconProvider) {
-        $urlRouterProvider.otherwise("/edit");
+        $urlRouterProvider.otherwise("/login");
         $mdIconProvider
             .defaultIconSet("./assets/svg/avatars.svg", 128)
             .icon("menu", "./assets/svg/menu.svg", 24)
@@ -87,8 +87,7 @@
             })
             .state("admin", {
                 url: "/admin",
-                templateUrl: "./templates/admin.html",
-                controller: "AdminController as ac"
+                templateUrl: "./templates/admin.html"
             });
 
         // if none of the above states are matched, use this as the fallback

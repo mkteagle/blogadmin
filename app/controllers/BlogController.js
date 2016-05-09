@@ -2,21 +2,14 @@
     angular
         .module('blogController', [])
         .controller('BlogController', BlogController);
-    BlogController.$inject = ['blogService', '$mdSidenav', '$mdBottomSheet', '$mdDialog', '$mdMedia', '$stateParams', '$scope', '$location', '$filter', '$http', '$rootScope'];
-    function BlogController(blogService, $mdSidenav, $mdBottomSheet, $mdDialog, $mdMedia, $stateParams, $scope, $location, $filter, $http, $rootScope) {
+    BlogController.$inject = ['$mdSidenav', '$mdBottomSheet', '$mdDialog', '$mdMedia', '$stateParams', '$scope', '$location', '$filter', '$http', '$rootScope'];
+    function BlogController($mdSidenav, $mdBottomSheet, $mdDialog, $mdMedia, $stateParams, $scope, $location, $filter, $http, $rootScope) {
         var self = this;
         self.$http = $http;
-        self.blogs = blogService.blogs;
         self.addBlog = addBlog;
         self.firstList = firstList;
         self.removeBlog = removeBlog;
         self.getPost = getPost;
-        self.counties = blogService.counties;
-        self.categories = blogService.categories;
-        self.seasons = blogService.seasons;
-        self.post = blogService.post;
-        self.county = blogService.county;
-        self.category = blogService.category;
         self.currentPage = 1;
         self.pageSize = 20;
         self.reverse = '';
@@ -26,8 +19,6 @@
         self.showEditBlog = showEditBlog;
         self.show = false;
         self.showdate = false;
-        self.Files = blogService.Files;
-        self.file = blogService.file;
         self.categoryName = '';
         self.isActive = 'master';
         self.addCategory = addCategory;
@@ -39,10 +30,13 @@
         self.createCategory = createCategory;
         self.initPost = initPost;
         self.uploadFiles = function (files) {
-            blogService.uploadFiles(files);
         };
+        self.logout = logout;
+
+        function logout () {
+            location.href="https://teagleseagles.auth0.com/v2/logout?returnTo=http://localhost:5000/#/login"
+        }
         function initPost() {
-            self.blogs = blogService.returnBlogs();
             console.log(self.blogs);
             angular.forEach(self.blogs, function (blog) {
                 if (blog.param === $stateParams.blogParam) {
@@ -52,7 +46,7 @@
             });
         }
         function deleteFeatured () {
-            blogService.deleteFeatured();
+
         }
         self.sort = function (keyname) {
             self.sortKey = keyname; //set the sortKey to the param passed
@@ -63,14 +57,14 @@
             self.addCategoryParams(self.post, self.categoryParam);
         }
         function addCategory() {
-            blogService.addCategory(self.categoryName);
+
             self.categoryName = '';
         }
         function addCategoryParams (post, category) {
-            blogService.addCategoryParams(post, category);
+
         }
         function addCountyParams () {
-            blogService.addCountyParams(self.post, self.county);
+
         }
         self.showAdvanced = function (ev, post) {
             $mdDialog.show({
@@ -93,16 +87,16 @@
             }
         }
         function getCounties(cParam) {
-            blogService.getCounties(cParam);
+
         }
         function firstList() {
-            self.selected = blogService.blogs[0];
+
         }
         function getCategory() {
             self.category = $filter('spaces')($stateParams.catParam);
         }
         function getCategories(catParam) {
-            blogService.getCategories(catParam);
+
         }
         function getCounty() {
             self.county = $stateParams.cParam;
@@ -112,7 +106,7 @@
             self.post = blog;
         }
         function removeBlog(blog) {
-            blogService.removeBlog(blog);
+
         }
         /**
          * First hide the bottomsheet IF visible, then
@@ -121,7 +115,6 @@
         
 
         function addBlog() {
-            blogService.addBlog(svgArr, svgindex);
             svgindex++;
         }
         self.countOf = function (text) {

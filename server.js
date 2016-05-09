@@ -16,6 +16,7 @@ app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/api', router);
 var port = (process.env.PORT || 5000);
 var passport = require('passport');
+var requiresLogin = require('./requiresLogin');
 
 // This is the file we created in step 2.
 // This will configure Passport to use Auth0
@@ -33,22 +34,30 @@ app.use(session({ secret: 'YOUR_SECRET_HERE', resave: false,  saveUninitialized:
 app.use(passport.initialize());
 app.use(passport.session());
 app.get('/callback',
-    passport.authenticate('auth0', { failureRedirect: '/url-if-something-fails' }),
+    passport.authenticate('auth0', { failureRedirect: '/403' }),
     function(req, res) {
         if (!req.user) {
             throw new Error('user null');
         }
-        res.redirect("#/admin");
+        console.log(req.user);
+        res.redirect("/#/admin");
     });
 app.get('/auth/google',
     passport.authenticate('auth0', {connection: 'google-oauth2'}), function(req, res) {
         res.redirect("#/admin");
 });
-app.get('/user', function (req, res) {
+app.get('/auth/facebook',
+    passport.authenticate('auth0', {connection: 'facebook'}), function(req, res) {
+        res.redirect("#/admin");
+    });
+app.get('/user', requiresLogin, function (req, res) {
     console.log(req.user);
     res.render('user', {
         user: req.user
     });
+});
+app.get('/#/admin', requiresLogin, function(req, res) {
+    console.log('You are not authenticated dummy!');
 });
 function insertDocument(db, blog, callback) {
     db.collection('blogs').insertOne(blog, function(err, result) {

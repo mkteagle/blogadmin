@@ -6,7 +6,10 @@ function loginController() {
     var self = this;
     self.facebook = facebook;
     self.google = google;
-    
+    self.logout = logout;
+    function logout () {
+        location.href="https://teagleseagles.auth0.com/v2/logout?returnTo=http://localhost:5000/#/login"
+    }
     function facebook() {
         location.href="/auth/facebook";
     }
