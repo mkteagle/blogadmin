@@ -29,12 +29,16 @@
         self.addCountyParams = addCountyParams;
         self.createCategory = createCategory;
         self.initPost = initPost;
+        self.init = init;
         self.uploadFiles = function (files) {
         };
-        self.logout = logout;
-
-        function logout () {
-            location.href="https://teagleseagles.auth0.com/v2/logout?returnTo=http://localhost:5000/#/login"
+        function init() {
+            console.log(firebase.database());
+            var blogs = firebase.database().ref('blog/');
+            blogs.on('value', function(snapshot) {
+                self.blogs = snapshot.val();
+            });
+            console.log(self.blogs);
         }
         function initPost() {
             console.log(self.blogs);

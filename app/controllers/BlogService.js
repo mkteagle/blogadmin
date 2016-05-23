@@ -3,10 +3,10 @@
     angular.module('blogService', [])
         .service('blogService', blogService);
 
-    blogService.$inject = ['$filter', '$timeout', '$state', '$stateParams', 'Upload', 'S3UploadService', '$http'];
-    function blogService($filter, $timeout, $state, $stateParams, Upload, S3UploadService, $http) {
+    blogService.$inject = ['$filter', '$timeout', '$state', '$stateParams', 'Upload', 'S3UploadService', '$http', 'firebase'];
+    function blogService($filter, $timeout, $state, $stateParams, Upload, S3UploadService, $http, firebase) {
+
         var self = this;
-        self.blogs = [];
         self.getChange = getChange;
         self.addPostParam = addPostParam;
         self.init = init;
@@ -26,7 +26,11 @@
             })
         }
         function init() {
-            self.getBlogs();
+            firebase.database().ref('blog/').on('value', function(snapshot) {
+                self.blogs = snapshot.val();
+            });
+            console.log(self.blogs);
+            // self.getBlogs();
         }
         function getChange(blog) {
             self.$http.put('/api/updatePost', blog).then(function(response) {
