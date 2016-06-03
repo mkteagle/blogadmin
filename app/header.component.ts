@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'ng-heading',
-    templateUrl: '../templates/heading.html'
+    templateUrl: '../templates/heading.component.html'
 })
 
 export class NgHeadingComponent {

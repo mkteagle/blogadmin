@@ -3,7 +3,7 @@ import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'ng-bloglist',
-    templateUrl: '../templates/bloglist.html'
+    templateUrl: '../templates/bloglist.component.html'
 })
 
 export class AppComponent {

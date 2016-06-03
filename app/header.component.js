@@ -16,7 +16,7 @@ var NgHeadingComponent = (function () {
     NgHeadingComponent = __decorate([
         core_1.Component({
             selector: 'ng-heading',
-            templateUrl: '../templates/heading.html'
+            templateUrl: '../templates/heading.component.html'
         }), 
         __metadata('design:paramtypes', [])
     ], NgHeadingComponent);

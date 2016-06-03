@@ -1,0 +1,53 @@
+<div class="titled">
+    <div class="heads-gray">
+        <div class="frow padding">
+            <div class="marginized" ng-class="{'active-bottom':bc.isActive === 'options'}"><span class="spantled" ng-click="bc.isActive = 'options'">Options</span></div>
+            <div class="marginized" ng-class="{'active-bottom':bc.isActive === 'views'}"><span class="spantled" ng-click="bc.isActive = 'views'">Views</span></div>
+            <div class="marginized" ng-class="{'active-bottom':bc.isActive === 'posted'}"><span class="spantled" ng-click="bc.isActive = 'posted'">Posted</span></div>
+            <div class="marginized" ng-class="{'active-bottom':bc.isActive === 'featured'}"><span class="spantled" ng-click="bc.isActive = 'featured'">Featured Image</span></div>
+        </div>
+    </div>
+    <div class="frow" ng-if="bc.isActive == 'options'">
+        <md-input-container layout-padding aria-label="..." flex>
+            <label aria-label="..." class="gray">County</label>
+            <md-select aria-label="..." ng-model="bc.post.county" ng-change="bc.getChange(bc.post)">
+                <md-option aria-label="..." class="blackify" ng-repeat="county in bc.counties"
+                           ng-click="bc.addCountyParams(bc.post, county.param)">{{ county.name }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container layout-padding flex aria-label="...">
+            <md-select-label aria-label="..." class="gray" aria-label="...">Category</md-select-label>
+            <md-select aria-label="..." ng-model="bc.post.category" ng-change="bc.getChange(bc.post)"
+                       aria-label="...">
+                <md-option aria-label="..." class="blackify" ng-repeat="category in bc.categories"
+                           ng-click="bc.createCategory(category.name)" aria-label="...">{{ category.name }}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <button ng-if="bc.post.category === 'Add'" ng-click="bc.addCategory(bc.categoryName)">Add Category
+        </button>
+        <input type="text" ng-if="bc.post.category === 'Add'" ng-model="bc.categoryName"/>
+        <md-input-container layout-padding flex>
+            <md-select-label class="gray" aria-label="...">Season</md-select-label>
+            <md-select ng-model="bc.post.season" ng-change="bc.getChange(bc.post)" aria-label="...">
+                <md-option class="blackify" ng-repeat="season in bc.seasons" aria-label="...">{{ season.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    <div class="frow" ng-if="bc.isActive == 'views'">
+        <h2>You are here</h2>
+    </div>
+    <div class="frow" ng-if="bc.isActive == 'posted'">
+        <md-input-container layout-padding>
+            <md-radio-group aria-label="..." ng-model="bc.post.posted" ng-change="bc.getChange(bc.post)">
+                <md-radio-button ng-value="true" aria-label="Label 1">
+                    Posted
+                </md-radio-button>
+                <md-radio-button ng-value="false" aria-label="Green">
+                    Draft
+                </md-radio-button>
+            </md-radio-group>
+
+        </md-input-container>

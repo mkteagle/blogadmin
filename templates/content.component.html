@@ -1,0 +1,10 @@
+<div class="titled">
+    <div class="field">
+        <md-input-container class="md-block md-input-has-value">
+            <div class="heads">Text <span><strong>Words: <span
+                    ng-bind="bc.countOf(bc.post.content)">, </span><span></span></strong></span></div>
+<textarea aria-label="..." froala id="taStyle" ng-model="bc.post.content"
+          ng-change="bc.getChange(bc.post)" aria-invalid="false" ng-trim="false"></textarea>
+        </md-input-container>
+    </div>
+</div>

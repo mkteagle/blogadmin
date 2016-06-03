@@ -1,0 +1,64 @@
+<title-component></title-component>
+<features-component></features-component>
+<content-component></content-component>
+
+        <!--</div>-->
+        <!--<div class="frow" ng-if="bc.isActive == 'featured'">-->
+            <!--<div class="stitched">-->
+                <!--<div class="fi-preview-red" ng-if="bc.post.featured == null || bc.post.featured == ''">Please upload-->
+                    <!--a featured image-->
+                <!--</div>-->
+                <!--<form novalidate>-->
+                    <!--<div>-->
+                        <!--<p>-->
+                            <!--<label class="custom-file-upload centerimg">-->
+                                <!--<input type="file" class="inputfile" ngf-select="bc.uploadFiles($files)"-->
+                                       <!--ngf-multiple="true">-->
+                                <!--<div class="center">Image</div>-->
+                            <!--</label>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div ng-show="Files.length > 0">-->
+                        <!--<div ng-repeat="file in bc.Files">-->
+                            <!--File:-->
+                            <!--<div>-->
+                                <!--{{bc.file.name}} {{bc.file.$error}} {{bc.file.$errorParam}}-->
+                            <!--</div>-->
+                            <!--<div class="progress">-->
+                                <!--<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"-->
+                                     <!--aria-valuemax="100" style="width: {{file.Progress}}%;">-->
+                                    <!--{{bc.file.Progress | number:0}}%-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="alert alert-info" role="alert"-->
+                                 <!--ng-show="bc.file.Progress == 100 && !bc.file.Sbccess">Processing, please wait...-->
+                            <!--</div>-->
+                            <!--<div class="alert alert-sbccess" role="alert" ng-show="bc.file.Sbccess">Upload-->
+                                <!--Complete!-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</form>-->
+                <!--<div class="fi-preview"-->
+                     <!--ng-style="{'background-image' : 'url(' + bc.post.featured + ')','background-size': 'cover','background-position': 'center center'}"></div>-->
+                <!--<button ng-if="bc.post.featured != null || bc.post.featured != ''"-->
+                        <!--ng-hide="bc.post.featured == null || bc.post.featured == ''" ng-click="bc.deleteFeatured()">-->
+                    <!--Delete-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="titled">-->
+        <!--<div class="field">-->
+            <!--<md-input-container class="md-block md-input-has-value">-->
+                <!--<div class="heads">Text - <span><strong>Words: <span ng-bind="bc.countOf(bc.post.content)">, </span><span></span></strong></span>-->
+                <!--</div>-->
+                    <!--<textarea aria-label="..." froala id="taStyle" ng-model="bc.post.content"-->
+                              <!--ng-change="bc.getChange(bc.post)" aria-invalid="false" ng-trim="false"></textarea>-->
+            <!--</md-input-container>-->
+
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
